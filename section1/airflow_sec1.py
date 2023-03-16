@@ -84,11 +84,15 @@ def main():
     # Apply truncated SHA-256 hash to the 'last_name','date_of_birth' column
     valid_df['membership_id'] = valid_df[['last_name','date_of_birth']].apply(tuple, axis=1).apply(sha256_hash)
     
-    # drop unwanted columns, rearrange columns and output valid applications to successful dir
+    # drop unwanted columns, rearrange columns and output valid applications to successful directory
     success_df = valid_df.drop(columns=['name', 'valid_mobile_no', 'above_18', 'valid_email'], axis=1)
     success_df = success_df.loc[:,['membership_id','first_name','last_name','email', 'date_of_birth', 'mobile_no']]
     success_df.to_csv(success_dir+"successful.csv", index=False, encoding='utf-8')
     print("output success")
+    
+    # compare raw and success df on email column values, take the difference and output invalid applications to unsuccessful directory
+    invalid_df = raw_df[~raw_df.email.isin(success_df.email)]
+    invalid_df.to_csv(unsuccessful_dir+"invalid.csv", index=False, encoding='utf-8')
 
 main_func = PythonOperator(
     task_id='py_func1',
