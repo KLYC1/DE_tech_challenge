@@ -5,7 +5,6 @@ import pandas as pd
 from airflow import DAG
 from airflow.utils.dates import days_ago
 from airflow.operators.python import PythonOperator
-from airflow.operators.bash_operator import BashOperator
 
 default_args = {
     'start_date': days_ago(2),
