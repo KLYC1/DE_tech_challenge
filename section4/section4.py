@@ -5,8 +5,7 @@ import matplotlib.dates as mdates
 
 # Fetch the data using the COVID19 API, change country to singapore 
 url = "https://api.covid19api.com/country/singapore/status/confirmed"
-response = requests.get(url)
-data = response.json()
+data = requests.get(url).json()
 # print(json.dumps(data, indent=4, sort_keys=True)) # print to check data
 
 # Extract the relevant data from the response, which are dates and cases. 
