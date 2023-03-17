@@ -17,8 +17,8 @@ The architecture consists of several components to process images uploaded by us
 
 3. Image processing: The compute engine will host the codes written by the company's software engineer and responsible for processing the images that are stored in the Cloud Storage bucket. The output of the processing is then stored in a Cloud Storage bucket. 
 
-4. Metadata storage: The processed images and their metadata are stored in a Cloud Spanner database / Cloud storage for archival purposes.
+4. Archival storage: The processed images and their metadata are stored in a Cloud Spanner database / Cloud storage for archival purposes.
 
-5. Data retention policy: The data retention policy component in google cloud storage / cloud spanner is responsible for enforcing the company's policy to purge the images and metadata from the database after 7 days. Placing a retention policy on a bucket ensures that all current and future objects in the bucket cannot be deleted or replaced until they reach the age you define in the retention policy.
+5. The data retention policy component in google cloud storage / cloud spanner is responsible for enforcing the company's policy to purge the images and metadata from the database after 7 days. Placing a retention policy on a bucket ensures that all current and future objects in the bucket cannot be deleted or replaced until they reach the age you define in the retention policy.
 
 6. Business Intelligence (BI) resources is hosted on BigQuery, providing access to the data for analysts to perform analytical computations, which can directly query the data stored in Cloud Spanner / storage.
