@@ -6,7 +6,7 @@ To implement this pipeline, the following steps outlined below:
   * initiate input_dir, success_dir & unsuccessful_dir file path.
 2. Set up an Apache Airflow DAG (Directed Acyclic Graph) to schedule the data processing pipeline on an hourly interval.
   * schedule interval is set every hour at 55 minutes (e.g. 10.55am, 11.55am...)
-  ```linux
+  ```
   schedule_interval='55 * * * *'
   ```
 3. Use the Pandas library to read the incoming CSV files from the folder and load them into a Pandas DataFrame.
