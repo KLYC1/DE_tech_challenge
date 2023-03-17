@@ -1,6 +1,6 @@
 # Data Engineer Tech Challenge
 
-This test is split into 5 sections
+The goal of this repository is based on solving technical challenges on the following:
 
 1. **data pipelines**
 2. **databases**
