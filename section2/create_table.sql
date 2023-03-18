@@ -25,6 +25,8 @@ CREATE TABLE Transactions (
     ID SERIAL PRIMARY KEY,
     Membership_id INTEGER REFERENCES Member(ID),
     Payment_method VARCHAR(40) NOT NULL,
+    Total_cost NUMERIC(10,2) NOT NULL,
+    Total_weight NUMERIC(10,2) NOT NULL,
     Transaction_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
 );
 
@@ -32,8 +34,6 @@ CREATE TABLE Purchase_details (
     TransactionID INTEGER REFERENCES Transactions(ID),
     ItemID INTEGER REFERENCES Item(ID),
     Quantity INTEGER NOT NULL,
-    Total_cost NUMERIC(10,2) NOT NULL,
-    Total_weight NUMERIC(10,2) NOT NULL,
     Created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     Updated_date TIMESTAMP NOT NULL DEFAULT NULL,
     PRIMARY KEY (TransactionID, ItemID)
