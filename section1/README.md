@@ -18,10 +18,10 @@ To implement this pipeline, the following steps outlined below:
   * Format the birthday field into YYYYMMDD format using the to_datetime() & strftime() function.
   * Remove any rows which do not have a name field using the dropna() function.
   * Perform the validity checks on the data:
-    Check if the mobile number is 8 digits long using the str.len() function, create new column "valid_mobile_no" which output 1 for valid mobile number and 0 for invalid numbers.
-    Check if the email is valid by checking if it ends with ".com" or ".net" using the str.endswith() function, create new column "valid_email" which output 1 for valid email and 0 for invalid email.
-    Check if the applicant is over 18 years old as of 1 Jan 2022 by comparing the date_of_birth with the date '2022-01-01', extracting the days between the 2 dates, dividing by 365 to get the number of years. Create a new column named "above_18", output 1 if applicant's years is large than 18 and 0 for lesser than 18.
-    Get all the index of rows values for the above new 3 columns if any rows value are 0 and drop those rows.
+    * Check if the mobile number is 8 digits long using the str.len() function, create new column "valid_mobile_no" which output 1 for valid mobile number and 0 for invalid numbers.
+    * Check if the email is valid by checking if it ends with ".com" or ".net" using the str.endswith() function, create new column "valid_email" which output 1 for valid email and 0 for invalid email.
+    * Check if the applicant is over 18 years old as of 1 Jan 2022 by comparing the date_of_birth with the date '2022-01-01', extracting the days between the 2 dates, dividing by 365 to get the number of years. Create a new column named "above_18", output 1 if applicant's years is large than 18 and 0 for lesser than 18.
+    * Get all the index of rows values for the above new 3 columns if any rows value are 0 and drop those rows.
 5. Generate "membership_id" column for successful applications using the user's last name and SHA256 hash of the applicant's birthday truncated to the first 5 digits of the hash in hexadecimal. 
 6. Drop unwanted columns (new columns created and name column), rearrange columns and output successful applications into a CSV file and into seperate folder. 
 7. Compare and seperate unsuccessful appplications by taking the difference between raw and successful dataframe and output into a CSV file and into seperate folder.
