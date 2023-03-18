@@ -1,0 +1,41 @@
+
+CREATE TABLE Item (
+    ID SERIAL PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,
+    Manufacture_name VARCHAR(50) NOT NULL,
+    Cost NUMERIC(10,2) NOT NULL,
+    Weight NUMERIC(10,2) NOT NULL,
+    Created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    Updated_date TIMESTAMP NOT NULL DEFAULT NULL
+);
+
+CREATE TABLE Member (
+    ID SERIAL PRIMARY KEY,
+    Membership_id VARCHAR(50) NOT NULL,
+    First_name VARCHAR(30) NOT NULL,
+    Last_name VARCHAR(30) NOT NULL,
+    Email VARCHAR(50) NOT NULL,
+    Date_of_birth DATE NOT NULL,
+    Mobile_no VARCHAR(8) NOT NULL,
+    Created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    Updated_date TIMESTAMP NOT NULL DEFAULT NULL
+);
+
+CREATE TABLE Transactions (
+    ID SERIAL PRIMARY KEY,
+    Membership_id INTEGER REFERENCES Member(ID),
+    Payment_method VARCHAR(40) NOT NULL,
+    Transaction_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+);
+
+CREATE TABLE Purchase_details (
+    TransactionID INTEGER REFERENCES Transactions(ID),
+    ItemID INTEGER REFERENCES Item(ID),
+    Quantity INTEGER NOT NULL,
+    Total_cost NUMERIC(10,2) NOT NULL,
+    Total_weight NUMERIC(10,2) NOT NULL,
+    Created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    Updated_date TIMESTAMP NOT NULL DEFAULT NULL,
+    PRIMARY KEY (TransactionID, ItemID)
+);
+
